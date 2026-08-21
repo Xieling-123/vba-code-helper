@@ -1,0 +1,27 @@
+ 
+Sub 当前单元格的行列号()
+    MsgBox ActiveCell.Row, , "当前单元格行号："
+    MsgBox ActiveCell.EntireRow.Row, , "当前单元格行号："
+    
+    MsgBox ActiveCell.Column, , "当前单元格列号："
+    MsgBox ActiveCell.EntireColumn.Column, , "当前单元格列号："
+    
+    MsgBox Split(ActiveCell.EntireColumn.Address(0, 0), ":")(0), , "读取当前单元格列字母：即列标"
+End Sub
+
+'Cells(1, "C")即C1单元格
+ MsgBox Cells(1, "C").EntireRow.Row 
+ MsgBox Cells(1, "C").EntireColumn.Column '字母C可以通过 下拉列表框ComboBox获取
+
+
+Sub test() '指定单元格的行号和列号，如：B2
+     
+    MsgBox ActiveSheet.Range("B2").Row    '返回 2
+    MsgBox ActiveSheet.Range("B2").Column '返回 2
+End Sub
+
+
+Sub 判断指定的列的列号() '当前活动单元格的行号和列号
+    MsgBox Cells(1, "D").Column  '返回4
+End Sub
+

@@ -1,0 +1,21 @@
+Sub 获取指定路径下的所有文件名() '支持通配符
+    
+    On Error Resume Next
+    Dim Mypath As String
+    Dim fileName As String
+    
+    Mypath = "C:\Users\zyg365\Desktop\CT\" '文件存放路径——尾部必须有“\”，否则错误
+    
+    fileName = Dir(Mypath & "*.png") '指定文件类型
+    'fileName = Dir(Mypath & "*.*") '支持通配符
+    'fileName = Dir(Mypath & "z*.*") '支持通配符——文件名开始字符为“z”的
+    
+    Dim N As Integer
+    Do While fileName <> ""
+        MsgBox fileName, , "符合条件的文件名："
+        fileName = Dir()
+        N = N + 1
+    Loop
+    
+    MsgBox "符合条件的文件个数：" & N, , "提示："
+End Sub

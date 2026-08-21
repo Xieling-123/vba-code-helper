@@ -1,0 +1,7 @@
+Sub 当前列标() '返回 Column 列英文字
+    Dim ColLetter As String  '当前列标
+    Dim ColNumber  As Long  '当前列号
+    ColNumber = ActiveCell.Column '当前列号
+    ColLetter = Left(Cells(1, ColNumber).Address(0, 0), 1 - (ColNumber > 26))
+    MsgBox ColLetter '返回 Column 列英文字
+End Sub

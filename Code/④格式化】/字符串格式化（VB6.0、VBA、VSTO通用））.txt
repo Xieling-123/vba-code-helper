@@ -1,0 +1,48 @@
+Sub 字符串格式化()
+    'TEXT(value,format_text)
+  将数值转换为按指定数字格式表示的文本?
+语法:
+TEXT(value,format_text)
+Value    为数值、计算结果为数字值的公式，或对包含数字值的单元格的引用。
+Format_text    为“单元格格式”对话框中“数字”选项卡上“分类”框中的文本形式的数字格式。
+说明:
+Format_text 不能包含星号 (*)。
+示例:
+=TEXT(3,"0000")&44  结果：000344
+=44&TEXT(3,"0000")  结果：440003
+
+'VBA写法：
+ MsgBox "KH" & Application.WorksheetFunction.Text(1, "0000") & 8 '返回； KH00018
+MsgBox "KH" & Format(1, "0000") & 8  '返回； KH00018
+
+
+'VB6.0、VBA写法：
+MsgBox "KH" & Format(1, "0000") & 8  '返回； KH00018
+
+'VSTO 代码写法：
+ MsgBox ("KH" & ExAPP.WorksheetFunction.Text(1, "0000") & 8) '返回； KH00018
+ MsgBox("KH" & Format(1, "0000") & 8)  '返回； KH00018
+
+
+End Sub
+
+**********************************************************
+VSTO中批量二维码图片编号命名
+
+ Dim Ling_GS As String '格式化零个数
+        Ling_GS = ""
+
+        Dim EWM_HS As Int16 '二维码编码总行数
+        EWM_HS = ExAPP.ActiveSheet.cells(ExAPP.Rows.Count, L1).end(xlUp).row
+        Dim HS As String = EWM_HS '将数字转换为字符串后，通过Length得到数字位数
+        'MsgBox(HS.Length,, "数字位数：")
+        Select Case HS.Length
+             'Select Case Me.NumericUpDown1.Value
+            Case 1 : Ling_GS = "00"
+            Case 2 : Ling_GS = "000"
+            Case 3 : Ling_GS = "0000"
+            Case 4 : Ling_GS = "00000"
+            Case 5 : Ling_GS = "000000"
+        End Select
+
+ Dim filePath As String = ZM_Path & "EWM\" & "EWM_" & Format(i - 1, Ling_GS) & ".png" '

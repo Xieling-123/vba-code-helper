@@ -1,0 +1,26 @@
+获取字符出现的的起始行列号和终止行列号 
+
+Sub test()
+    On Error Resume Next '没有这一句找不到要查找的数据，就会提示错误——有这一句，查不到数据没有任何提示
+    
+    '在指定列查找某字符第一次出现的行号、最后出现的行号——始行号=终行号：说明只出现1次
+    MsgBox ActiveSheet.Columns(1).Find(what:="李四", lookat:=xlWhole).Row, , "始行号："
+    MsgBox ActiveSheet.Columns(1).Find(what:="李四", lookat:=xlWhole, searchdirection:=xlPrevious).Row, , "终止行："
+    
+    '在指定行查找某字符第一次出现的列号、最后出现的列号——始列号=终列号：说明只出现1次
+    MsgBox ActiveSheet.Rows(1).Find(what:="李四", lookat:=xlWhole).Column, , "始列号："
+    MsgBox ActiveSheet.Rows(1).Find(what:="李四", lookat:=xlWhole, searchdirection:=xlPrevious).Column, , "终列号："
+   
+End Sub
+
+Sub Test()
+    Dim L1,L2 As Integer
+    Dim Sh As String
+    Sh = "zyg"
+
+    L1 = Sheets(Sh).Rows(1).Find(what:="数学", lookat:=xlWhole).Column '在指定行指定科目出现的始列号   
+    L2 = Sheets(Sh).Rows(1).Find(what:="数学", lookat:=xlWhole, searchdirection:=xlPrevious).Column  '在指定行指定科目出现的终止列号
+    MsgBox L1
+    MsgBox L2
+    '如果L1=L2说明这一行只有一个要查的科目
+End Sub

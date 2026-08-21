@@ -1,0 +1,38 @@
+Sub test()
+    If ActiveSheet.Name Like "*zyg*" Then
+        MsgBox "当前工作表名称含有“zyg”字符！", 64, "系统："
+    Else
+        MsgBox "当前工作表名称不含有“zyg”字符！", 16, "系统："        
+    End If    
+End Sub
+
+Sub Test()
+    Dim i
+    For i = 1 To Sheets.Count
+        If Sheets(i).Name Like "*小学*" Then
+           MsgBox "工作表名称中含有字符“小学”：" & Sheets(i).Name, 64, "系统："
+           
+           '  sheets(i).Visible = True
+        Else
+            ' sheets(i).Visible = False
+        End If
+    Next
+    
+End Sub
+
+Sub Test()
+    Dim sht  As Worksheet
+    
+    For Each sht In Sheets
+    
+        If sht.Name Like "*小学*" Then
+           MsgBox "工作表名称中含有字符“小学”：" & sht.Name, 64, "系统："
+           
+           '  sheets(i).Visible = True
+        Else
+            ' sheets(i).Visible = False
+        End If
+    Next
+    
+End Sub
+

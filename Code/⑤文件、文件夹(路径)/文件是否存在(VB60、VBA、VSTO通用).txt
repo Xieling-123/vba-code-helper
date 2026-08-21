@@ -1,0 +1,47 @@
+ Sub 文件是否存在()'VB60、VBA、VSTO通用——不需要引用，不需要其它控件
+
+     On Error Resume Next '防错(Error)——遇到错误代码，自动跳到下一步
+    Dim s As String
+    
+    Dim MyPath As String
+    MyPath = "C:\Users\zyg365\Desktop\CT\" '尾部必须有“\”
+    
+    's = Dir(MyPath & "*.xls")
+    'MsgBox s  '只通报选定文件夹下指定类型的一个文件，如果该类型文件不存在，就返回为空
+    'If s = "" Then MsgBox"你选择的文件夹中没有此类文件！", 16, "系统："
+    
+    '获取指定路径下含有指定字符的文件名称()
+    Dim sr$
+    sr = Dir(MyPath & "*.bmp") '含指定字符“*.bmp”的文件——获取返回条件的文件名
+    MsgBox sr, , "符合条件的文件名称：只显示一个"
+    MsgBox Strings.Len(sr), , "2符合条件的文件名称字符数：" '如果没有返回要求的文件，返回0——含有指定字符的文件名称字符个数
+    
+    
+    Dim Filename As String
+    'Filename = MyPath & Dir(MyPath & "*" & "141070001.png" & "*") '检索的关键字141070001.png
+    Filename = MyPath & Dir(MyPath & "*" & "141070001" & "*") '检索的关键字141070001
+    
+    MsgBox Filename, 64, "提示：Filename"
+    
+    MsgBox Strings.Len(Dir(MyPath & "*" & "141070001" & "*")), , "文件名字符个数：文件不存在返回0"
+    
+    If Strings.Len(Dir(MyPath & "*" & "141070001" & "*")) <> 0 Then
+        'If Strings.Len(Dir(MyPath & "*" & "141070001.png" & "*")) <> 0 Then
+        MsgBox "文件存在！", 64, "提示1："
+    Else
+        MsgBox "文件不存在！", 16, "提示1："
+    End If
+    
+    If Strings.Len(Dir(MyPath & "*" & "141070001.png" & "*")) <> 0 Then
+        MsgBox "文件存在！", 64, "提示2："
+    Else
+        MsgBox "文件不存在！", 16, "提示2："
+    End If
+    
+    If IO.File.Exists(Filename) = True Then '如果图片文件存在
+        MsgBox "文件操作！", 64, "提示3："
+    Else
+        MsgBox "文件不存在！", 16, "提示3："
+    End If
+
+End Sub

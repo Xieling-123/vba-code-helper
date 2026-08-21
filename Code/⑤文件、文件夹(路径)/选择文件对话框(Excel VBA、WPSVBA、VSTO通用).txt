@@ -1,0 +1,70 @@
+选择文件对话框
+
+Sub 选择文件1()'Excel VAB、WPS VBA、VSTO通用，不需要引用，不需要其它控件——VB6.0不支持
+
+    On Error Resume Next '防错(Error)——遇到错误代码，自动跳到下一步
+
+    '弹出一个打开文件的对话框
+    Dim filefilter1, filePath As String
+    '设置文件类型为jpg bmp png和gif
+    filefilter1 = ("所有图片文件 (*.jpg;*.bmp;*.png;*.gif),*.jpg;*.bmp;*.png;*.gif")
+   'filefilter1 = ("所有类型文件 (*.*),*.*")
+
+    '让用户选择待插入的文件，只能单选——MultiSelect:=True 可以多选，MultiSelect:=False 只能选一个文件
+    filePath = Application.GetOpenFilename(filefilter1, , "请选一个图片文件：", , MultiSelect:=False) '只能选一个图片
+
+'【上一句代码在VSTO中，改成下面两句即可】
+ 'Dim ExAPP As Excel.Application = Globals.ThisAddIn.Application '【VSTO开发Excel插件声明】
+ 'filePath = ExAPP.GetOpenFilename(filefilter1, , "请选一个图片文件：", , MultiSelect:=False) '只能选一个图片
+
+    MsgBox filePath ,,"选择的文件：路径+文件名"'没有选择文件就返回False，如果选择文件就显示文件路径及名称
+    MsgBox Dir(filePath),,"选择的文件名："
+    'If filePath = False Then Exit Sub
+    If filePath = "" Then Exit Sub
+End Sub
+
+**************************************************************************************
+
+Sub 选择文件2() 'Excel VAB、WPS VBA、VB6.0、VSTO通用——不需要引用，不需要其它控件
+    
+    Dim oDLG
+     Set oDLG = CreateObject("MSComDlg.CommonDialog")
+     With oDLG
+         .DialogTitle = "打开文件"
+         '.Filter = "图片文件|*.jpg;*.bmp;*.png"
+         .Filter = "所有类型文件|*.*"
+         .FilterIndex = 1
+         .MaxFileSize = 255
+         .ShowOpen
+         MsgBox .fileName, , "选择的文件：完全路径+文件名称"
+         MsgBox Dir(.fileName), , "选择的文件：文件名称"
+         
+         If .fileName <> "" Then
+         ' Me.Image1.Picture = LoadPicture(.fileName)
+         End If
+     End With
+     Set oDLG = Nothing
+
+End Sub
+
+Sub 选择文件2()'Excel VAB、WPS VBA、VB6.0、VSTO通用——不需要引用，不需要其它控件
+  Dim oDLG
+        'Set oDLG = CreateObject("MSComDlg.CommonDialog")'VB6.0、VBA中代码写法
+        oDLG = CreateObject("MSComDlg.CommonDialog") 'VSTO中代码写法
+        With oDLG
+            .DialogTitle = "打开文件"
+            .Filter = "图片文件|*.jpg;*.bmp;*.png"
+            '.Filter = "所有类型文件|*.*"
+            .FilterIndex = 1
+            .MaxFileSize = 255
+            .ShowOpen
+            MsgBox(.fileName, , "选择的文件：完全路径+文件名称")
+            MsgBox(Dir(.fileName), , "选择的文件：文件名称")
+
+            If .fileName <> "" Then
+                ' Me.Image1.Picture = LoadPicture(.fileName)
+            End If
+        End With
+        'Set oDLG = Nothing 'VB6.0、VBA中代码写法
+        oDLG = Nothing 'VSTO中代码写法
+End Sub

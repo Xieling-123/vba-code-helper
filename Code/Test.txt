@@ -1,0 +1,8 @@
+Sub Test()
+    On Error Resume Next '防错(Error)——遇到错误代码，自动跳到下一步
+    Application.ScreenUpdating = False '关闭屏幕刷新
+    
+    
+    
+    Application.ScreenUpdating = True '开启屏幕刷新
+End Sub

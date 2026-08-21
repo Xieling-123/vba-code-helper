@@ -1,0 +1,13 @@
+在代码中换行——换行符  vbCrLf
+
+如果你需要在代码中（例如，在字符串操作中）换行，可以使用环境特定的换行符。
+对于Windows系统，通常使用vbCrLf（回车加换行），而在Unix/Linux系统中，通常使用vbLf（仅换行）。
+
+Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        
+        '& vbCrLf &“开始换行， & vbLf
+        ' RichTextBox1.Focus()
+        '下面两句代码换行修改相同——VB.net
+        RichTextBox1.Text = RichTextBox1.Text & "Hello World" & vbCrLf '可以换行
+        'RichTextBox1.Text = RichTextBox1.Text & "Hello World" & vbLf  '可以换行
+End Sub

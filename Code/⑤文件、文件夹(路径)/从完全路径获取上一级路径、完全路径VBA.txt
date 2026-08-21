@@ -1,0 +1,68 @@
+从完全路径获取上一级路径、完全路径 VBA、VB6
+
+方法一：需要引用
+
+'使用 FileSystemObject（推荐，最健壮）——最好
+'需先引用 Microsoft Scripting Runtime（工程 → 引用 → 勾选对应项）：
+ Sub Test()
+    Dim fso As New FileSystemObject
+    Dim fullPath As String
+    Dim parentPath As String
+    
+    fullPath = "C:\Folder1\Folder2\File.txt"   ' 示例路径
+    parentPath = fso.GetParentFolderName(fullPath)
+    MsgBox parentPath '返回：C:\Folder1\Folder2
+    
+
+    '不含文件名，尾部有“\”与没有“\”，返回结果相同
+    '不含文件名，尾部有“\”
+    fullPath = "C:\Folder1\Folder2\"   ' 示例路径
+    parentPath = fso.GetParentFolderName(fullPath)
+    MsgBox parentPath '返回：C:\Folder1
+    '不含文件名，尾部没有“\”
+    fullPath = "C:\Folder1\Folder2"   ' 示例路径
+    parentPath = fso.GetParentFolderName(fullPath)
+    MsgBox parentPath '返回：C:\Folder1
+End Sub
+
+方法二：不需要引用
+字符串函数处理（无需外部引用）VB、VBA、VB.net通用
+   通过 InStrRev 和 Left 截取路径：
+ Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        MsgBox（GetParentPath("C:\Folder1\Folder2\")）   '返回：C:\Folder1
+
+        MsgBox（GetParentPath("C:\Folder1\Folder2")）   '返回：C:\Folder1
+
+        MsgBox（GetParentPath("C:\Folder1\Folder2\zyg365.txt")）   '返回：C:\Folder1\Folder2\
+ End Sub
+
+    Function GetParentPath(ByVal fullPath As String) As String
+        If Strings.Right(fullPath, 1) = "\" Then
+            fullPath = Strings.Left(fullPath, Len(fullPath) - 1)  ' 移除末尾的\
+        End If
+        Dim lastPos As Long
+        lastPos = InStrRev(fullPath, "\")
+        If lastPos > 0 Then
+            GetParentPath = Strings.Left(fullPath, lastPos - 1)
+        Else
+            GetParentPath = ""  ' 根目录或无父目录
+        End If
+    End Function
+
+
+方法三：不需要引用
+Private Declare Function PathRemoveFileSpec Lib "shlwapi" Alias "PathRemoveFileSpecA" (ByVal path As String) As Long
+
+Function GetParentPathAPI(ByVal fullPath As String) As String
+    PathRemoveFileSpec fullPath  ' 直接修改原字符串
+    GetParentPathAPI = fullPath
+End Function
+
+Sub Test()
+  '路径中包含文件名
+    MsgBox GetParentPathAPI("C:\zyg365\abc\File.txt") ' 返回：C:\zyg365\abc
+
+  '路径中不包含文件名——尾部有\、没有\
+    MsgBox GetParentPathAPI("C:\zyg365\abc\") '返回：C:\zyg365\abc
+    MsgBox GetParentPathAPI("C:\zyg365\abc")  '返回：C:\zyg365    
+End Sub

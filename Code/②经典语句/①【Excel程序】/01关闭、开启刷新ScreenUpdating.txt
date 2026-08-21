@@ -1,0 +1,5 @@
+'关闭刷新
+Application.ScreenUpdating = False
+
+'开启刷新
+Application.ScreenUpdating = True

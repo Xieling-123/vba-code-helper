@@ -1,0 +1,7 @@
+Sub 删除空列()
+    For i = ActiveSheet.UsedRange.Columns.Count To 1 Step -1   '当前工作表实有数据列数
+        If Application.WorksheetFunction.CountA(Columns(i)) = 0 Then ActiveSheet.Columns(i).Delete Shift:=xlToLeft
+    Next
+    'MsgBox Application.WorksheetFunction.CountA(Columns(2)), , "返回0，当前工作表第2列为空："
+End Sub
+ 

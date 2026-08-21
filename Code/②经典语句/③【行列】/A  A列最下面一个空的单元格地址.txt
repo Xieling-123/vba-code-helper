@@ -1,0 +1,8 @@
+A列最下面一个空的单元格地址
+
+'【A列最后非空单元格（由上至下）的下一个单元格（空的单元格）的地址及赋值】
+ Dim theRange As Excel.Range 'Dim theRange As Range '这样写错误
+ Set theRange = ActiveSheet.Cells(65536, 1).End(xlUp).Offset(1, 0)  'A列最后非空单元格（由上至下）的下一个单元格（空的单元格）地址
+'A列最后非空单元格（由上至下）的下一个单元格（空的单元格）
+ MsgBox theRange.Address, , "A列最后非空单元格地址："
+

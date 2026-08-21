@@ -1,0 +1,21 @@
+'选中、选择实有数据的单元格区域
+
+
+ActiveSheet.UsedRange.Select
+
+
+'实有数据区域行、列数 
+
+Dim H As Integer
+ H= ActiveSheet.Cells(Rows.Count, "A").End(xlUp).Row '定位第1列(A列)非空单元格的行号
+ H= ActiveSheet.Cells(Rows.Count, 1).End(xlUp).Row   '定位第1列(A列)非空单元格的行号
+
+Dim L As Integer
+L = Cells(1, Columns.Count).End(xlToLeft).Column '以第1行为依据、第1行实有数据列数——如果第一行最后单元格也有数据，返回值为1，这样就错误了
+
+'
+'当前工作表的已用（实有）区域行、列数——下面代码是可行的：
+  MsgBox ActiveSheet.UsedRange.Rows.Count , , "当前工作表实验数据行数："     '工作表为空，返回1
+  MsgBox ActiveSheet.UsedRange.Columns.Count, , "当前工作表实验数据列数："   '工作表为空，返回1
+  
+ 

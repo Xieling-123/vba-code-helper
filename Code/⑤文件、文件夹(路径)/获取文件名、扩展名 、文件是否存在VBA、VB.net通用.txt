@@ -1,0 +1,14 @@
+Sub Test()
+    '【文件名、扩展名 、文件是否存在 】
+    Dim fso
+    
+    Set fso = CreateObject("Scripting.Filesystemobject")
+    MsgBox (fso.GetFileName("c:\a.txt"))      '结果是 "a.txt"
+    MsgBox (fso.GetBaseName("c:\a.txt"))      '结果是 "a"
+    MsgBox (fso.GetExtensionName("c:\a.txt")) '结果是  "txt"
+
+    MsgBox (fso.GetExtensionName("a.txt"))    '结果是   "txt"
+    MsgBox (fso.FileExists("c:\a.txt"))       '检测文件是否存在，存在返回True，否则False
+    
+    
+End Sub

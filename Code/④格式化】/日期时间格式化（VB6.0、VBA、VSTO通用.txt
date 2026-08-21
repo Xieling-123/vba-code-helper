@@ -1,0 +1,11 @@
+Sub 日期时间格式化()
+
+'VB6.0、VBA中代码写法：
+MsgBox Format(Now(), "yyyymmddhhmmss") '年、/日/、时、分、秒
+MsgBox Format(Now(), "yyyymmddHHmmss") '年、/日/、时、分、秒
+
+'VSTO中代码写法：
+ Dim RQ_SJ As String = String.Format("{0: yyyyMMddHHmmss}", Now())
+        MsgBox(RQ_SJ,, "当前日期时间格式化：")J 
+  示例：20250422012230
+End Sub

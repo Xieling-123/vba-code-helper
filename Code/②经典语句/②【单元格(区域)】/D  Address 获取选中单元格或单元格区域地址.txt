@@ -1,0 +1,9 @@
+Sub 获取选中单元格或单元格区域地址()
+    Dim DR   As Range
+    Set DR = Application.InputBox(Prompt:="请选择单元格或单元格区域：", Title:="Excel助手：", Type:=8)
+    MsgBox DR.Address, , "选中、选择单元格或单元格区域："
+    
+    'MsgBox ActiveSheet.Range(DR.Address), , "选择一个单元格时取值：" '选中多个单元格就错误
+    
+    
+End Sub

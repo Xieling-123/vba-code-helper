@@ -1,0 +1,10 @@
+'【自动列宽、自动行高】
+
+ActiveSheet.Columns(2).AutoFit '第2列 最合适的列宽：自动列宽
+ActiveSheet.Cells(1, 2).Select
+
+ActiveSheet.UsedRange.Columns.AutoFit '当前工作表实有数据区域的所有列自动列宽
+ActiveSheet.UsedRange.Rows.AutoFit    '当前工作表实有数据区域的所有行自动行高
+
+
+ActiveSheet.Cells(1).Select

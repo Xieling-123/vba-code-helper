@@ -1,0 +1,21 @@
+判断指定单元格（列）的列号
+
+Sub test() '当前活动单元格的行号和列号
+    MsgBox ActiveCell.Row
+    MsgBox ActiveCell.Column     
+End Sub
+
+
+Sub 判断指定的列的列号() '当前活动单元格的行号和列号
+    MsgBox Cells(1, "D").Column  '返回4
+End Sub
+
+
+Sub 判断指定的列的列号() '当前活动单元格的行号和列号3
+    Dim L As String
+    L = "A" '列字母——列标 ：程序开发时使用下拉列表框获取字母
+    
+    MsgBox Cells(1, L).Column '以A列为依据——返回1    
+End Sub
+
+

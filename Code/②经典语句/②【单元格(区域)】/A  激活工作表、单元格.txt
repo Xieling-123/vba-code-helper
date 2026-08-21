@@ -1,0 +1,13 @@
+   '【激活工作表、单元格】
+
+Sub Test()
+ 
+'激活工作表的指定单元格——注意工作表是否激活
+ ActiveSheet.Cells(2, 6).Activate '激活当前工作表的指定单元格——永远OK
+
+ Sheets("zyg365").Cells(2, 6).Activate '如果Sheets("zyg365")当前是激活状态，这句代码可以，否则错误 
+'如果Sheets("zyg365")当前不是激活状态，上一句代码就改成下面两步进行
+ Sheets("zyg365").Activate '先激活Sheets("zyg365")工作表
+ Cells(2, 6).Activate '再选定、激活Sheets("zyg365")工作表中的单元格
+ Cells(2, 6).Select '再选定、激活Sheets("zyg365")工作表中的单元格
+End Sub

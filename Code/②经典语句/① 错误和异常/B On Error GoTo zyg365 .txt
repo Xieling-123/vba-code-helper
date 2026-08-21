@@ -1,0 +1,10 @@
+Sub Test()'出现错误跳到预设的标签处运行
+    On Error GoTo zyg365    
+
+    '代码……
+     
+    Exit Sub
+
+zyg365:
+    MsgBox "*******！（根据需要设定提示信息内容）", 16, "系统："
+End Sub

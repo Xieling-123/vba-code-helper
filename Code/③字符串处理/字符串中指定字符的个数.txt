@@ -1,0 +1,13 @@
+字符串中指定字符的个数VB、VBA、VB.net
+
+Sub Test()
+    MsgBox StrNumber("zyg365zyG", "G") '返回1——字母区分大小写
+End Sub
+
+Function StrNumber(StrInfo, StrTemp) '字符串中指定字符的个数
+    'StrInfo  总字符
+    'StrTemp  字符串
+    If StrInfo <> "" And StrTemp <> "" And Len(StrInfo) > Len(StrTemp) Then
+        StrNumber = (Len(StrInfo) - Len(Replace(StrInfo, StrTemp, ""))) / Len(StrTemp)
+    End If
+End Function

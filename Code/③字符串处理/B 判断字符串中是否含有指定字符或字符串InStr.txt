@@ -1,0 +1,28 @@
+'InStr判断字符串中是否含有指定字符或字符串
+
+Sub Test()'InStr判断本身是不是wps 
+    
+    MyPath = "C:\【Mysoft】\WPS\WPS Office\11.8.2.8053\office6\"
+    
+    If InStr(1, MyPath, "WPS") > 0 Then '包含指定字符串
+        MsgBox "含WPS"
+    Else
+        MsgBox "不含WPS"
+    End If
+    
+    '不过这个是判断本身是不是wps的
+    
+    
+End Sub
+ 
+'只能判断运行时程序是Excel还是WPS
+
+Sub test()
+    aaa = "江苏省南京市建邺区水西门大街34号"
+   If InStr(aaa, "建邺") <> 0 Then
+      MsgBox "包含"
+   Else
+    MsgBox "不包含"
+End If
+ 
+End Sub

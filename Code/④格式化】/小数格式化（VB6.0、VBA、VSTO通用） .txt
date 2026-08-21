@@ -1,0 +1,10 @@
+ Sub 小数格式化()
+ 
+  MsgBox Format(3, "#0.00")  '返回：3.00——VB6.0、VBA中写法
+  MsgBox Format(1234567890, "#,##0.00") '保留两位小数，每三位加一个分割符号“,” 
+
+ 'MsgBox Application.WorksheetFunction.Format(3, "#0.00")  '错误写法 
+
+  MsgBox(Format(3, "#0.00"))  '返回：3.00——VSTO中写法
+End Sub
+

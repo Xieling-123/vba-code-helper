@@ -1,0 +1,20 @@
+从一个字符串的两个字符之间获取所需要的字符串VB6、VBA、VB.Net通用
+
+Sub test()
+    MsgBox GetByDiv("【zyg张元光】", "【", "】") '返回：zyg张元光
+    MsgBox GetByDiv("【zyg张元光】", "g", "光") '返回：张元
+End Sub
+
+'从一个字符串的两个字符之间获取所需要的字符串
+Function GetByDiv(ByVal code As String, ByVal divBegin As String, ByVal divEnd As String)  '获取分隔符所夹的内容[完成，未测试]
+    '仅用于获取编码数据
+    Dim lgStart As Integer
+    Dim lens As Integer
+    Dim lgEnd As Integer
+    lens = Len(divBegin)
+    If InStr(1, code, divBegin) = 0 Then GetByDiv = "": Exit Function
+    lgStart = InStr(1, code, divBegin) + CInt(lens)
+    lgEnd = InStr(lgStart + 1, code, divEnd)
+    If lgEnd = 0 Then GetByDiv = "": Exit Function
+    GetByDiv = Mid(code, lgStart, lgEnd - lgStart)
+End Function

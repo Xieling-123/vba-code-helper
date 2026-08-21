@@ -1,0 +1,16 @@
+空单元格、空行、空列、空选中区域、空工作表
+
+Sub Test()
+    MsgBox Application.WorksheetFunction.CountA(ActiveCell), , "返回0，当前单元格为空："
+    
+    MsgBox Application.WorksheetFunction.CountA(Rows(2)), , "返回0，当前工作表第2行为空："
+    MsgBox Application.WorksheetFunction.CountA(ActiveCell.EntireRow), , "返回0，当前工作表当前行为空："
+    
+    MsgBox Application.WorksheetFunction.CountA(Columns(2)), , "返回0，当前工作表第2列为空："
+    MsgBox Application.WorksheetFunction.CountA(ActiveCell.EntireColumn), , "返回0，当前工作表当前列为空："
+    
+    
+    MsgBox Application.WorksheetFunction.CountA(Selection), , "返回0，当前选中的单元格区域为空："
+    
+    MsgBox Application.WorksheetFunction.CountA(Cells), , "返回0，当前工作表为空："
+End Sub

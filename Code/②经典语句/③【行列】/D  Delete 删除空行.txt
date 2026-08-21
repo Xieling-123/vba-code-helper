@@ -1,0 +1,6 @@
+Sub 删除空行()
+    For i = ActiveSheet.UsedRange.Rows.Count To 1 Step -1 '当前工作表实有数据行数
+        If Application.WorksheetFunction.CountA(Rows(i)) = 0 Then ActiveSheet.Rows(i).Delete Shift:=xlUp
+    Next
+    'MsgBox Application.WorksheetFunction.CountA(Rows(2)), , "返回0，当前工作表第2行为空："
+End Sub

@@ -1,0 +1,8 @@
+  '从当前单元格移动到上一个单元格
+
+Application.ActiveCell.Offset(-1).Select
+Application.ActiveCell.Offset(-1).Activate
+
+'Application.ActiveCell.Offset(-1,0).Select
+Application.ActiveCell.Offset(-1, 0).Activate
+ 

@@ -1,0 +1,3 @@
+'防错(Error)——遇到错误代码，自动跳到下一步
+
+On Error Resume Next

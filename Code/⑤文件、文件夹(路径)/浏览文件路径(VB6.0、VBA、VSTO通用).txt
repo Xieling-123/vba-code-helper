@@ -1,0 +1,50 @@
+浏览文件路径() 'VB6.0、VBA、VB.net、VSTO通用
+
+Sub 浏览文件路径() 'VB6.0、VBA、VSTO通用——不需要引用，不需要其它控件
+ 
+    On Error Resume Next '防错(Error)——遇到错误代码，自动跳到下一步
+    Dim s As String
+    Dim obMapp As Object
+  
+    Dim My_Path As String
+            
+    '默认选择的是系统的【用户】文件夹
+    'Set obMapp = CreateObject("Shell.Application").BrowseForFolder(0, "请浏览、选择文件所在的文件夹：", &H1)  
+     
+     '默认选择的是【桌面】文件夹
+     Set obMapp = CreateObject("Shell.Application").BrowseForFolder(0, "请浏览、选择文件所在的文件夹：", 0, 0)  
+    
+    '默认选择的是【“D:\”】
+    'Set obMapp = CreateObject("Shell.Application").BrowseForFolder(0, "请浏览、选择文件所在的文件夹：", 0, "D:\")  
+
+    'obMapp = CreateObject("Shell.Application").BrowseForFolder(0, "请选择文件存放文件夹：", &H1) 'VSTO中需要把VBA代码中的Set去掉
+  
+      
+    If Not obMapp Is Nothing Then
+        My_Path = obMapp.Self.Path
+        MsgBox My_Path, , "你选择的图片存放文件夹是1："
+        If Not My_Path Like "*\" Then My_Path = My_Path & "\" '路径尾部如果没有“\”，就加入
+        MsgBox My_Path, , "你选择的图片存放文件夹是2："
+    Else
+        MsgBox "你没有选择存放文件的文件夹，请重新选择！", 16, "警告"
+        Exit Sub
+    End If
+     
+    
+    If obMapp Is Nothing Then Exit Sub '没有选择就退出
+    If Strings.Right(obMapp.Self.Path, 1) <> "\" Then
+        My_Path = obMapp.Self.Path & "\"   '选择的是根目录的盘符时，path的尾部才有“\”——【使用时注意：尾部已经有“\”， 多一个“\”会错误】
+    Else
+        My_Path = obMapp.Self.Path
+    End If
+     
+    
+    '获取的路径尾部都有“\”
+    MsgBox My_Path, , "你选择的图片存放文件夹是1："
+    MsgBox My_Path, vbInformation, "你选择的文件存放文件夹是2："
+    
+    's = Dir(My_Path & "*.xls*")
+     'MsgBox s  '只通报选定文件夹下指定类型的一个文件，如果该类型文件不存在，就返回为空
+    'If s = "" Then MsgBox "你选择的文件夹中没有此类文件！", 16, "系统："
+    
+End Sub 

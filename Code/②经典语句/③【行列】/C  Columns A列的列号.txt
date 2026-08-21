@@ -1,0 +1,2 @@
+
+  MsgBox Columns("A").Column 'Aап╣дап╨е

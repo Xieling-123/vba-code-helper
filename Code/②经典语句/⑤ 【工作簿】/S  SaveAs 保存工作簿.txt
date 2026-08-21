@@ -1,0 +1,8 @@
+
+
+Sub 保存工作簿() 
+    'ChDir "C:\Users\zyg365\Desktop" '在编程中，ChDir的意思是“change directory”，它是用于改变当前工作目录的函数。——定位默认的工作目录
+
+     '上一句可以不要，直接用下一句
+    ActiveWorkbook.SaveAs Filename:="C:\Users\zyg365\Desktop\工作簿123.xlsx", FileFormat:=xlOpenXMLWorkbook, CreateBackup:=False
+End Sub

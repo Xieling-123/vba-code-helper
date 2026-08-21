@@ -1,0 +1,3 @@
+'A列追加数据——A列没有数据就从第2行开始
+
+ActiveSheet.Cells(Rows.Count, 1).End(xlUp).Offset(1, 0) = 123

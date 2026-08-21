@@ -1,0 +1,39 @@
+.Offset(X, Y)上下 左右平移—— X：负数向上平移、正数向下平移，Y：负数向左平移、整数向右平移
+
+Sub Test1()
+    '选中、选择单元格或单元格区域
+    'ActiveSheet.Cells(3, 3).Offset(0, 0).Select 'Cells(3, 3)本身单元格——没有平移
+    
+    'ActiveSheet.Cells(3, 3).Offset(-1, 0).Select 'Cells(3, 3)的上一个单元格
+    'ActiveSheet.Cells(3, 3).Offset(0, -1).Select 'Cells(3, 3)的左边一个单元格
+    
+    
+    'ActiveSheet.Cells(3, 3).Offset(1, 0).Select 'Cells(3, 3)的下一个单元格
+    'ActiveSheet.Cells(3, 3).Offset(0, 1).Select 'Cells(3, 3)的右边一个单元格
+    
+    ActiveSheet.Cells(3, 3).Offset(1, 1).Select 'Cells(3, 3)的下一、右一个单元格
+    
+End Sub
+Sub Test2() 'Offset(向下平移的行数、单元格数, 向右平移的列数、单元格数)
+    '选中、选择单元格或单元格区域
+    Dim Arr
+    Dim H, L As Integer
+    'Arr = ActiveSheet.UsedRange.Offset(0, 0).Value '选中全部的实有数据区域
+    'ActiveSheet.UsedRange.Offset(0, 0).Select '选中全部的实有数据区域
+    
+    'Arr = ActiveSheet.UsedRange.Offset(1, 0).Value '选中第一行以外的实有数据区域
+    'ActiveSheet.UsedRange.Offset(1, 0).Select '选中第一行以外的实有数据区域
+    
+    'Arr = ActiveSheet.UsedRange.Offset(0, 1).Value '选中从第2列开始向右的实有数据区域最右边加一个空列——实有数据区域大小，向右平移1列
+    'ActiveSheet.UsedRange.Offset(0, 1).Select '选中从第2列开始向右的实有数据区域最右边加一个空列——实有数据区域大小，向右平移1列
+    
+    Arr = ActiveSheet.UsedRange.Offset(1, 1).Value '选中从第2行、第2列开始向下、向右的实有数据区域最下面加一个空行、最右边加一个空列——实有数据区域大小，向下平移一行、向右平移1列
+    ActiveSheet.UsedRange.Offset(1, 1).Select '选中从第2行、第2列开始向下、向右的实有数据区域最下面加一个空行、最右边加一个空列——实有数据区域大小，向下平移一行、向右平移1列
+    
+    H = UBound(Arr)
+    L = UBound(Arr, 2)
+    
+    MsgBox H, , "数组行数："
+    MsgBox L, , "数组列数数："
+End Sub
+

@@ -1,0 +1,39 @@
+从完全路径获取上一级路径、完全路径VB.net
+'不支持VB6、VBA
+
+'Imports System.IO
+ Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        
+        '从完全路径获取上一级路径、完全路径
+        Dim Str As String
+        Str = "C:\Users\zyg365\Desktop\zyg365"  '不含文件名时
+        MsgBox(Path.GetDirectoryName(Str)) '返回：C:\Users\zyg365\Desktop
+
+        Str = "C:\Users\zyg365\Desktop\zyg365\HR.txt" '不含文件名时
+        MsgBox(Path.GetDirectoryName(Str)) '返回：C:\Users\zyg365\Desktop\zyg365
+
+    End Sub
+
+
+方法2：字符串函数处理（无需外部引用）VB、VBA、VB.net通用
+   通过 InStrRev 和 Left 截取路径：
+ Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        MsgBox（GetParentPath("C:\Folder1\Folder2\")）   '返回：C:\Folder1
+
+        MsgBox（GetParentPath("C:\Folder1\Folder2")）   '返回：C:\Folder1
+
+        MsgBox（GetParentPath("C:\Folder1\Folder2\zyg365.txt")）   '返回：C:\Folder1\Folder2\
+ End Sub
+
+    Function GetParentPath(ByVal fullPath As String) As String
+        If Strings.Right(fullPath, 1) = "\" Then
+            fullPath = Strings.Left(fullPath, Len(fullPath) - 1)  ' 移除末尾的\
+        End If
+        Dim lastPos As Long
+        lastPos = InStrRev(fullPath, "\")
+        If lastPos > 0 Then
+            GetParentPath = Strings.Left(fullPath, lastPos - 1)
+        Else
+            GetParentPath = ""  ' 根目录或无父目录
+        End If
+    End Function

@@ -1,0 +1,5 @@
+'列
+
+Columns
+
+  MsgBox Columns("A").Column 'A列的列号
